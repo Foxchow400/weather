@@ -1,0 +1,19 @@
+body {
+    background: url(../images/bg.png);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.container-fluid {
+    background: white;
+    display: block;
+    width: 400px;
+    height: 400px;
+    margin: 48px auto;
+    padding: 24px;
+    border-radius: 4px;
+    text-align: center;
+}
