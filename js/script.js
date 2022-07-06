@@ -29,21 +29,29 @@ function getWeatherData(geoData) {
     });
 }
 
-function displayData(wd) {
+function displayData(wd, ct) {
     var data = "";
+    var icon = wd.weather[0].icon;
     var src = "";
+    var cat = "";
     var loc = wd.name;
+    var country = wd.sys.country;
+    var feel = Math.round(1.8 * (wd.main.feels_like - 273) + 32);
     var tempF = Math.round(1.8 * (wd.main.temp - 273) + 32);
     console.log(loc);
-    switch (wd.weather[0].icon) {
-        case "01d":
-          src = "images/sun.png";
-          break;
-        default:
-          src = "images/def.png";
-      }
-    $("#weather").html(loc + "<br>" + tempF + "° F" + "<br>" + wd.weather[0].main + "<br>" + wd.weather[0].description + "<br>" + "<img src='" + src + "' height='100px' width='100px'>")
-    console.log(wd.main.temp);
+    src = "http://openweathermap.org/img/wn/" + wd.weather[0].icon + "@2x.png";
+    cat = "images/" + icon + ".png";
+
+    data =
+        loc + ", " + country + "<br>" + //City, country
+        tempF + "° F" + "<br>" + //Temperature
+        "Feels like: " + feel + "° F" + "<br>" + //Feels like temperature
+        wd.weather[0].main + "<br>" + //Current weather
+        wd.weather[0].description + "<br>" + //More info about current weather
+        "<img src='" + src + "' height='100px' width='100px'>" + "<br>" + //Icons
+        "<img id='cat' src='" + cat + "' height='100px' width='100px'>"; //cat
+
+    $("#weather").html(data);
 
 }
 
