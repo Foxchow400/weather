@@ -29,7 +29,8 @@ function getWeatherData(geoData) {
     });
 }
 
-function displayData(wd, ct) {
+
+function displayData(wd, ct, floor) {
     var data = "";
     var icon = wd.weather[0].icon;
     var src = "";
@@ -41,14 +42,23 @@ function displayData(wd, ct) {
     console.log(loc);
     src = "http://openweathermap.org/img/wn/" + wd.weather[0].icon + "@2x.png";
     cat = "images/" + icon + ".png";
-
+    var floor =""; //Used for the switch to define what background image to use
+    switch (icon) {
+        case "13d":
+            floor = "images/snow.png";
+          break;
+        default:
+            floor = "images/grass.png";
+          break;
+      }
     data =
         loc + ", " + country + "<br>" + //City, country
-        tempF + "° F" + "<br>" + //Temperature
+        "Current temperature: " + tempF + "° F" + "<br>" + //Temperature
         "Feels like: " + feel + "° F" + "<br>" + //Feels like temperature
         wd.weather[0].main + "<br>" + //Current weather
         wd.weather[0].description + "<br>" + //More info about current weather
         "<img src='" + src + "' height='100px' width='100px'>" + "<br>" + //Icons
+        "<img id='grass' src='" + floor + "' height='100px' width='100px'>" + //Grass
         "<img id='cat' src='" + cat + "' height='100px' width='100px'>"; //cat
 
     $("#weather").html(data);

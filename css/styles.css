@@ -3,7 +3,8 @@
 }
 
 body {
-    background: url(../images/bg.png);
+    background: url(../images/bgg.png);
+    background-repeat: repeat;
 }
 
 h1 {
@@ -26,16 +27,26 @@ img {
     padding: 10px;
 }
 
+#grass {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
 #cat {
     text-align: center;
     position: relative;
+    transition-timing-function: ease;
     animation-name: cat;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
     animation-iteration-count: infinite;
   }
   
   @keyframes cat {
-    0%  {left:10px; top:0px;}
-    50%  {left:-10px; top:0px;}
-    100%  {left:10px; top:0px;}    
+    0%  {left:15px; top:-100px;}
+    33% {left:-15px; top:-100px;}
+    50%  {left:-15px; top:-100px;}
+    67%  {left:-15px; top:-100px;}
+    100%  {left:15px; top:-100px;}    
   }
